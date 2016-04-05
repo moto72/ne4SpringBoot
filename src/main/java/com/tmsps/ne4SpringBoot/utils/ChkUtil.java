@@ -1,6 +1,7 @@
 package com.tmsps.ne4SpringBoot.utils;
 
 import java.util.List;
+
 /**
  * 
  * @author zhangwei 396033084@qq.com
@@ -64,6 +65,10 @@ public class ChkUtil {
 	public static boolean listIsNull(List<?> list){
 		return ChkUtil.isNull(list)||list.isEmpty();
 	}//#判断集合为空
+	
+	public static boolean listIsNotNull(List<?> list){
+		return !listIsNull(list);
+	}
 	
 	/**
 	 * 验证是否为邮箱

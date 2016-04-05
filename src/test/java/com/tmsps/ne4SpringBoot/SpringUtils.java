@@ -6,10 +6,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fastjson.JSON;
 import com.tmsps.ne4SpringBoot.utils.generator.BeanGenerator;
 import com.tmsps.ne4SpringBoot.utils.generator.GeUtils;

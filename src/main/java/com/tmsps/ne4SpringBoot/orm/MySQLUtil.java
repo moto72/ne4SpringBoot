@@ -14,7 +14,6 @@ import com.tmsps.ne4SpringBoot.base.Record;
 import com.tmsps.ne4SpringBoot.orm.model.DataModel;
 import com.tmsps.ne4SpringBoot.utils.StrUtil;
 
-
 /**
  * 
  * @author zhangwei 396033084@qq.com
@@ -194,5 +193,12 @@ public class MySQLUtil {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public static String getPageSQL(String select, String sqlExceptSelect) {
+		StringBuilder sb = new StringBuilder(select);
+		sb.append(" ").append(sqlExceptSelect);
+		sb.append(" ").append("LIMIT ?,?");
+		return sb.toString();
 	}
 }

@@ -24,8 +24,11 @@ public class Page implements Serializable {
 	private int totalPage = 1;
 	private int totalRow = 0;
 
-	public Page() {
-
+	public Page() {}
+	
+	public Page(int pageNumber,int pageSize) {
+		this.pageNumber = pageNumber;
+		this.pageSize = pageSize;
 	}
 
 	public Page(List<Map<String, Object>> result, int pageNumber, int pageSize,
