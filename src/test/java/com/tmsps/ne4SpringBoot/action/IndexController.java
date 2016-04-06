@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSON;
 import com.tmsps.ne4SpringBoot.SpringService;
-import com.tmsps.ne4SpringBoot.bean.test;
 import com.tmsps.ne4SpringBoot.service.UserService;
-import com.tmsps.ne4SpringBoot.utils.PKUtil;
 import com.tmsps.ne4SpringBoot.utils.generator.BeanGenerator;
 import com.tmsps.ne4SpringBoot.utils.generator.GeUtils;
 import com.tmsps.ne4SpringBoot.utils.generator.TableMeta;
@@ -30,10 +28,8 @@ public class IndexController {
 
 	@RequestMapping("index")
 	public String index() {
-		test t = new test();
-		t.setId(PKUtil.getOrderNO());
-		userService.saveObj(t);
-		return "Hey Go";
+		
+		return userService.say();
 	}
 	
 	@RequestMapping("go")

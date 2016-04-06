@@ -15,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSON;
@@ -28,11 +29,16 @@ import com.tmsps.ne4SpringBoot.utils.ChkUtil;
 import com.tmsps.ne4SpringBoot.utils.GenerateUtil;
 import com.tmsps.ne4SpringBoot.utils.StrUtil;
 
+@Service
 public class BaseMySQLService implements IBaseService {
-
 	@Autowired
-	protected JdbcTemplate jt;
-
+	private JdbcTemplate jt;
+	
+	@Override
+	public JdbcTemplate getJdbcTemplate(){
+		return this.jt;
+	}
+	
 	@Override
 	public int saveObj(DataModel model) {
 		log.debug("save the model" + model.toJsonString());
@@ -376,5 +382,4 @@ public class BaseMySQLService implements IBaseService {
 				(pageNumber - 1) * pageSize < 0 ? 0 : (pageNumber - 1) * pageSize, pageSize);
 		return new Page(result, pageNumber, pageSize, totalPage, ((Number) totalRow).intValue());
 	}
-
 }

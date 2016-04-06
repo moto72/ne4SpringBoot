@@ -2,8 +2,11 @@ package com.tmsps.ne4SpringBoot.base;
 
 import java.util.List;
 import java.util.Map;
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.tmsps.ne4SpringBoot.orm.model.DataModel;
 import com.tmsps.ne4SpringBoot.page.Page;
@@ -18,7 +21,9 @@ import com.tmsps.ne4SpringBoot.page.Page;
  */
 public interface IBaseService {
 	public Logger log = LoggerFactory.getLogger("Ne4Spring");
-
+	
+	public JdbcTemplate getJdbcTemplate();
+	
 	public int saveObj(DataModel model);
 	public int saveObj(DataModel model, boolean sync);
 
