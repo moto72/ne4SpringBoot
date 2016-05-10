@@ -8,9 +8,9 @@ import javax.sql.DataSource;
 
 
 import com.alibaba.fastjson.JSON;
-import com.tmsps.ne4SpringBoot.utils.generator.BeanGenerator;
-import com.tmsps.ne4SpringBoot.utils.generator.GeUtils;
-import com.tmsps.ne4SpringBoot.utils.generator.TableMeta;
+import com.tmsps.ne4spring.utils.generator.BeanGenerator;
+import com.tmsps.ne4spring.utils.generator.GeUtils;
+import com.tmsps.ne4spring.utils.generator.TableMeta;
 
 public class SpringUtils {
 	public static void main(String[] args) throws SQLException {
