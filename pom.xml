@@ -3,7 +3,7 @@
 
 	<groupId>com.tmsps</groupId>
 	<artifactId>ne4SpringBoot</artifactId>
-	<version>1.3.2</version>
+	<version>1.3.3</version>
 	<packaging>jar</packaging>
 
 	<name>ne4SpringBoot</name>
@@ -39,8 +39,8 @@
 	<properties>
 		<!-- target JDK version == source JDK version -->
 		<jdk.version>1.8</jdk.version>
-		<Spring.boot>1.3.5.RELEASE</Spring.boot>
-		<ne4Spring.version>1.6.1</ne4Spring.version>
+		<Spring.boot>1.3.6.RELEASE</Spring.boot>
+		<ne4Spring.version>1.6.2</ne4Spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
