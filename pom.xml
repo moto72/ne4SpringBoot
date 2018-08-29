@@ -39,8 +39,8 @@
 	<properties>
 		<!-- target JDK version == source JDK version -->
 		<jdk.version>1.8</jdk.version>
-		<Spring.boot>1.4.1.RELEASE</Spring.boot>
-		<ne4Spring.version>1.6.6</ne4Spring.version>
+		<Spring.boot>2.0.4.RELEASE</Spring.boot>
+		<ne4Spring.version>5.0.8</ne4Spring.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
