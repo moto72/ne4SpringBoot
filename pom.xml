@@ -84,6 +84,7 @@
 			<id>release</id>
 			<build>
 				<finalName>ne4SpringBoot</finalName>
+				<pluginManagement>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -156,6 +157,7 @@
 						</executions>
 					</plugin>
 				</plugins>
+				</pluginManagement>
 			</build>
 
 			<distributionManagement>
