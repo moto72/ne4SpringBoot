@@ -43,7 +43,7 @@
 		<jdk.version>1.8</jdk.version>
 		<Spring.boot>2.1.6.RELEASE</Spring.boot>
 		<ne4Spring.version>5.1.8.1</ne4Spring.version>
-		<mysql.version>5.1.47</mysql.version>
+		<mysql.version>8.0.16</mysql.version>
 		<lombok.version>1.18.6</lombok.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
