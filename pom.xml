@@ -41,7 +41,7 @@
 	<properties>
 		<!-- target JDK version == source JDK version -->
 		<jdk.version>1.8</jdk.version>
-		<Spring.boot>2.1.6.RELEASE</Spring.boot>
+		<Spring.boot>2.5.12</Spring.boot>
 		<ne4Spring.version>5.1.8.1</ne4Spring.version>
 		<mysql.version>5.1.47</mysql.version>
 		<lombok.version>1.18.6</lombok.version>
