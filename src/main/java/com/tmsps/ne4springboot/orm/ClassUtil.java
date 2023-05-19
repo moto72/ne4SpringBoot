@@ -24,19 +24,11 @@ import cn.hutool.core.util.ObjectUtil;
  *
  */
 public class ClassUtil {
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static String getClassName(Class clazz) {
-		if (!clazz.isAnnotationPresent(Table.class)) {
-			return clazz.getSimpleName().toString();
-		} else if (!"".equals(((Table) clazz.getAnnotation(Table.class)).value().toString())) {
-			return ((Table) clazz.getAnnotation(Table.class)).value().toString();
-		} else if ("".equals(((Table) clazz.getAnnotation(Table.class)).TableName().toString())) {
-			return clazz.getSimpleName().toString();
-		} else {
-			return ((Table) clazz.getAnnotation(Table.class)).TableName().toString();
-		}
-	}
-
+	/**
+	 * 	@Description: 获取表名称，如果没有表名称注解，则返回Class的名称
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/19
+	 */
 	public static String getTableName(Class<? extends DataModel> clazz) {
 		if (!clazz.isAnnotationPresent(Table.class)) {
 			return clazz.getSimpleName().toString();
