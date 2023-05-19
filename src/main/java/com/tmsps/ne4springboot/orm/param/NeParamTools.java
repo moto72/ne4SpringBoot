@@ -2,21 +2,19 @@ package com.tmsps.ne4springboot.orm.param;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @Title: NeParamTools.java
- * @Package com.tmsps.ne4spring.orm.param
+ * @Package com.tmsps.ne4springboot.orm.param
  * @Description: 处理多条件查询时SQL语句最后的生成。
  * @author: zhangwei
  * @date: 2019-08-14
  * @version v1.0
  * @Copyright: 2019 nuoyun All rights reserved.
  */
+@Slf4j
 public class NeParamTools {
-	static Logger log = LoggerFactory.getLogger(NeParamTools.class);
-
 	/**
 	 * 处理sql语言
 	 */

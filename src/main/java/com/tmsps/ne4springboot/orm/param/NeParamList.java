@@ -86,7 +86,7 @@ public class NeParamList {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[ ");
 		for (Object value : paramValueList) {
-			sb.append(value).append(" ");
+			sb.append(value).append(StrUtil.SPACE);
 		}
 		sb.append("]");
 		return sb.toString();
