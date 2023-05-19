@@ -93,7 +93,8 @@ public class ClassUtil {
 			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
 				continue;
 			}
-			boolean acc = field.isAccessible();
+
+			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {
 				Object value = field.get(obj);
@@ -120,7 +121,7 @@ public class ClassUtil {
 			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
 				continue;
 			}
-			boolean acc = field.isAccessible();
+			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {// name and value
 				classMap.put(field.getName(), field.get(obj));
@@ -146,7 +147,7 @@ public class ClassUtil {
 			if (field.isAnnotationPresent(PK.class)) {
 				continue;
 			}
-			boolean acc = field.isAccessible();
+			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {// name and value
 				classMap.put(field.getName(), field.get(obj));
@@ -179,7 +180,7 @@ public class ClassUtil {
 			if (field.isAnnotationPresent(Column.class) && !field.getAnnotation(Column.class).insertable()) {
 				continue;
 			}
-			boolean acc = field.isAccessible();
+			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {// name and value
 				classMap.put(field.getName(), field.get(obj));
@@ -212,7 +213,7 @@ public class ClassUtil {
 			if (field.isAnnotationPresent(Column.class) && !field.getAnnotation(Column.class).updateable()) {
 				continue;
 			}
-			boolean acc = field.isAccessible();
+			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {// name and value
 				classMap.put(field.getName(), field.get(obj));
@@ -251,7 +252,7 @@ public class ClassUtil {
 			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
 				continue;
 			}
-			boolean acc = field.isAccessible();
+			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {// name and value
 				if (field.isAnnotationPresent(PK.class)) {//如果为PK
@@ -302,7 +303,7 @@ public class ClassUtil {
 	}// #getIdField
 
 	public static Object getClassVal(Field field, Object obj) {
-		boolean acc = field.isAccessible();
+		boolean acc = field.canAccess(obj);
 		field.setAccessible(true);
 		try {
 			return field.get(obj);
@@ -315,7 +316,7 @@ public class ClassUtil {
 	}
 
 	public static void setClassVal(Field field, Object obj, Object val) {
-		boolean acc = field.isAccessible();
+		boolean acc = field.canAccess(obj);
 		field.setAccessible(true);
 		try {
 			field.set(obj, val);
