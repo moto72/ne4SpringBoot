@@ -43,6 +43,7 @@
 		<jdk.version>17</jdk.version>
 		<Spring.boot>3.1.0</Spring.boot>
 		<fastjson.version>2.0.31</fastjson.version>
+		<hutool.version>5.8.18</hutool.version>
 		<lombok.version>1.18.26</lombok.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -67,10 +68,18 @@
 			<artifactId>fastjson2-extension-spring6</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>${hutool.version}</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>
+				org.projectlombok</groupId>
+			<artifactId>
+				lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -79,60 +88,76 @@
 
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>
+				release</id>
 			<build>
 				<finalName>ne4SpringBoot</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
+						<artifactId>
+							maven-surefire-plugin</artifactId>
 						<configuration>
 							<skip>true</skip>
 						</configuration>
 					</plugin>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-release-plugin</artifactId>
+						<groupId>
+							org.apache.maven.plugins</groupId>
+						<artifactId>
+							maven-release-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
 							<autoVersionSubmodules>true</autoVersionSubmodules>
-							<useReleaseProfile>false</useReleaseProfile>
+							<useReleaseProfile>
+								false</useReleaseProfile>
 							<releaseProfiles>release</releaseProfiles>
-							<goals>deploy</goals>
+							<goals>
+								deploy</goals>
 						</configuration>
 					</plugin>
 
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
+						<groupId>
+							org.apache.maven.plugins</groupId>
+						<artifactId>
+							maven-compiler-plugin</artifactId>
 						<version>3.1</version>
 						<configuration>
-							<source>${jdk.version}</source>
+							<source>
+								${jdk.version}</source>
 							<target>${jdk.version}</target>
-							<encoding>${project.build.sourceEncoding}</encoding>
+							<encoding>
+								${project.build.sourceEncoding}</encoding>
 						</configuration>
 					</plugin>
 					<!-- Source -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
+						<groupId>
+							org.apache.maven.plugins</groupId>
+						<artifactId>
+							maven-source-plugin</artifactId>
 						<executions>
 							<execution>
 								<phase>package</phase>
 								<goals>
-									<goal>jar-no-fork</goal>
+									<goal>
+										jar-no-fork</goal>
 								</goals>
 							</execution>
 						</executions>
 					</plugin>
 					<!-- Javadoc -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
+						<groupId>
+							org.apache.maven.plugins</groupId>
+						<artifactId>
+							maven-javadoc-plugin</artifactId>
 						<version>2.9.1</version>
 						<executions>
 							<execution>
-								<phase>package</phase>
+								<phase>
+									package</phase>
 								<goals>
 									<goal>jar</goal>
 								</goals>
@@ -141,9 +166,11 @@
 					</plugin>
 					<!-- GPG -->
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
+						<groupId>
+							org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
+						<version>
+							1.6</version>
 						<executions>
 							<execution>
 								<phase>verify</phase>
@@ -158,12 +185,16 @@
 
 			<distributionManagement>
 				<snapshotRepository>
-					<id>oss</id>
-					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+					<id>
+						oss</id>
+					<url>
+						https://oss.sonatype.org/content/repositories/snapshots</url>
 				</snapshotRepository>
 				<repository>
-					<id>oss</id>
-					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+					<id>
+						oss</id>
+					<url>
+						https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 				</repository>
 			</distributionManagement>
 		</profile>
