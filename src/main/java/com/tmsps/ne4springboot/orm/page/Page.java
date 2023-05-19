@@ -1,7 +1,4 @@
-/**
- * 
- */
-package com.tmsps.ne4springboot.page;
+package com.tmsps.ne4springboot.orm.page;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,15 +39,14 @@ public class Page implements Serializable {
 		this.pageSize = pageSize;
 	}
 
-	public Page(List<Map<String, Object>> result, int pageNumber, int pageSize,
-			int totalPage, int totalRow) {
+	public Page(List<Map<String, Object>> result, int pageNumber, int pageSize, int totalPage, int totalRow) {
 		this.list = result;
 		this.pageNumber = pageNumber;
 		this.pageSize = pageSize;
 		this.totalPage = totalPage;
 		this.totalRow = totalRow;
 		/**
-		 *  @author zhangwei 2022/09/09
+		 * @author zhangwei 2022/09/09
 		 */
 		this.isFrist = (pageNumber == 1);
 		this.isLast = (pageNumber == totalPage);
