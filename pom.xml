@@ -40,11 +40,9 @@
 
 	<properties>
 		<!-- target JDK version == source JDK version -->
-		<jdk.version>1.8</jdk.version>
-		<Spring.boot>2.1.6.RELEASE</Spring.boot>
-		<ne4Spring.version>5.1.8.1</ne4Spring.version>
-		<mysql.version>5.1.47</mysql.version>
-		<lombok.version>1.18.6</lombok.version>
+		<jdk.version>17</jdk.version>
+		<Spring.boot>3.1.0</Spring.boot>
+		<lombok.version>1.18.26</lombok.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -54,30 +52,24 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${Spring.boot}</version>
+			<version>
+				${Spring.boot}</version>
 		</dependency>
-		
-		<!-- mysql -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.tmsps</groupId>
-			<artifactId>ne4Spring</artifactId>
-			<version>${ne4Spring.version}</version>
-		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
 	</dependencies>
 
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>
+				release</id>
 			<build>
 				<finalName>ne4SpringBoot</finalName>
 				<plugins>
@@ -90,7 +82,8 @@
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-release-plugin</artifactId>
+						<artifactId>
+							maven-release-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
 							<autoVersionSubmodules>true</autoVersionSubmodules>
@@ -101,7 +94,8 @@
 					</plugin>
 
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
+						<groupId>
+							org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>3.1</version>
 						<configuration>
@@ -131,8 +125,7 @@
 						<executions>
 							<execution>
 								<phase>package</phase>
-								<goals>
-									<goal>jar</goal>
+								<goals><goal>jar</goal>
 								</goals>
 							</execution>
 						</executions>
