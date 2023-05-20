@@ -264,4 +264,22 @@ public class MySQLUtil {
 		sb.append(pkName).append("=").append(":").append(pkName);
 		return sb.toString();
 	}
+	
+	/**
+	 * @Description: 生成select alias.字段]语句，用于替代select *;
+	 * @author: zhangwei(Mr.z).396033084@qq.com @date： 2023/05/20
+	 */
+	public static String generateSelectSQLPrefix(final Class<? extends DataModel> clazz, String alias) {
+		List<String> propertys = ClassUtil.getPropertyName(clazz);
+		StringBuilder sb = new StringBuilder("select").append(StrUtil.SPACE);
+		propertys.forEach(property -> {
+			if (StrUtil.isNotBlank(alias)) {
+				sb.append(alias).append(".");
+			}
+			sb.append(property).append(",");
+		});
+		// 去掉 最后的逗号
+		sb.deleteCharAt(sb.length() - 1);
+		return sb.toString();
+	}
 }

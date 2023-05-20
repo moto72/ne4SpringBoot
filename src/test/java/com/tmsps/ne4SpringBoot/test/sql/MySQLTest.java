@@ -24,11 +24,12 @@ public class MySQLTest {
 	
 	@Test
 	public void sql() {
-		Console.error("MySQL getInsSQL: {}", MySQLUtil.getInsSQL(app_user.class));
-		Console.error("MySQL getUpdateSQL: {}", MySQLUtil.getUpdateSQL(app_user.class));
-		Console.error("MySQL getDelRealSQL: {}", MySQLUtil.getDelRealSQL(app_user.class));
-		Console.error("MySQL getNamedParameterInsertSQL: {}", MySQLUtil.getNamedParameterInsertSQL(app_user.class));
-		Console.error("MySQL getNamedParameterUpdateSQL: {}", MySQLUtil.getNamedParameterUpdateSQL(app_user.class));
+//		Console.error("MySQL getInsSQL: {}", MySQLUtil.getInsSQL(app_user.class));
+//		Console.error("MySQL getUpdateSQL: {}", MySQLUtil.getUpdateSQL(app_user.class));
+//		Console.error("MySQL getDelRealSQL: {}", MySQLUtil.getDelRealSQL(app_user.class));
+//		Console.error("MySQL getNamedParameterInsertSQL: {}", MySQLUtil.getNamedParameterInsertSQL(app_user.class));
+//		Console.error("MySQL getNamedParameterUpdateSQL: {}", MySQLUtil.getNamedParameterUpdateSQL(app_user.class));
+		Console.error("MySQL generateSelectSQLPrefix: {}", MySQLUtil.generateSelectSQLPrefix(app_user.class, "t"));
 	}
 	
 }
