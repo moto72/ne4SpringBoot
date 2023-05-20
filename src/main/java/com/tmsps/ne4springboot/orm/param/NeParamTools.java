@@ -34,9 +34,9 @@ public class NeParamTools {
 
 		int indexOf = 0;
 		for (int index = 0; index < list.size(); index++) {
-			NeParam p = list.get(index);
+			NeParam param = list.get(index);
 			indexOf = sb.indexOf("?", indexOf);
-			if (!p.getIsNull()) {
+			if (param.isNotNull()) {
 				indexOf += 1;
 				continue;
 			}

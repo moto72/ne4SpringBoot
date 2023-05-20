@@ -1,4 +1,4 @@
-package com.tmsps.ne4SpringBoot;
+package com.tmsps.ne4SpringBoot.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

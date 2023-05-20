@@ -14,12 +14,12 @@ public class NeParamList {
 	private List<Object> paramValueList = new ArrayList<Object>();
 
 	public NeParamList add(Object value) {
-		NeParam p = new NeParam();
-		p.setValue(value);
-		paramList.add(p);
+		NeParam param = new NeParam();
+		param.setValue(value);
+		paramList.add(param);
 
 		// 非空,加入[值] list
-		if (!p.getIsNull()) {
+		if (param.isNotNull()) {
 			paramValueList.add(value);
 		}
 
@@ -33,12 +33,12 @@ public class NeParamList {
 	 */
 	public NeParamList add(Object[] values) {
 		if (!ObjectUtils.isEmpty(values)) {
-			NeParam p = new NeParam();
+			NeParam param = new NeParam();
 			for (Object value : values) {
-				p.setValue(value);
-				paramList.add(p);
+				param.setValue(value);
+				paramList.add(param);
 				// 非空,加入[值] list
-				if (!p.getIsNull()) {
+				if (param.isNotNull()) {
 					paramValueList.add(value);
 				}
 			}

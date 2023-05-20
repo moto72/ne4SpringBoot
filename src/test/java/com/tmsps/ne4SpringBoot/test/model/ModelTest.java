@@ -1,4 +1,4 @@
-package com.tmsps.ne4SpringBoot.model;
+package com.tmsps.ne4SpringBoot.test.model;
 
 import java.time.LocalDateTime;
 import java.util.List;

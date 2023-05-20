@@ -1,4 +1,4 @@
-package com.tmsps.ne4SpringBoot;
+package com.tmsps.ne4SpringBoot.test;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
