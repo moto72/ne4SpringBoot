@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.tmsps.ne4springboot.orm.model.DataModel;
 import com.tmsps.ne4springboot.orm.param.NeParamList;
@@ -21,6 +22,8 @@ public interface IBaseService {
 
 	//获取对象JdbcTemplate，便于使用JdbcTemplate提供的封装方法
 	public JdbcTemplate getJdbcTemplate();
+	//获取NamedParameterJdbcTemplate
+	public NamedParameterJdbcTemplate getNamedParameterJdbcTemplate();
 	
 	//与数据库表的信息对应,保存进入数据库,sync 为是否需要同步一次Model,用于数据库中默认属性的回填
 	public int saveObj(DataModel model);
