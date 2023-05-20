@@ -3,7 +3,9 @@ package com.tmsps.ne4SpringBoot.test.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,13 +55,25 @@ public class ModelTest {
 	@Test
 	public void toJSON() {
 		app_user user = new app_user().setUser_id(2333L);
-		app_user user1 = new app_user().setUser_id(2444L);
+		app_user user1 = new app_user().setUser_id(1234567890L)
+				.setUser_name("管理员")
+				.setRegistration_time(LocalDateTime.now())
+				.setSort(0)
+				.setCreated(System.currentTimeMillis())
+				.setStatus(1);
 		List<app_user> list = new ArrayList<>();
 		list.add(user);
 		list.add(user1);
-		Console.log("user to Json:{}", user.toJsonString());
+		Console.log("user to Json:{}", user1.toJsonString());
 		Console.log("users to Json:{}", JSON.toJSONString(list));
-		Console.log("user to JsonAllString:{}", user.toAllStringJson());
+		Console.log("user to JsonAllString:{}", user1.toAllStringJson());
+	}
+	
+	@Test
+	public void mapJson() {
+		Map<String, Object> data = new HashMap<>();
+		data.put("id", 1638790012801781761L);
+		Console.error("map :{}", JSON.toJSONString(data));
 	}
 	
 	@Test
