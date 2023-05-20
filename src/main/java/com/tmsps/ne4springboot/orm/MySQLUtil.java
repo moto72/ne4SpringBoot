@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 import com.tmsps.ne4springboot.annotation.Column;
 import com.tmsps.ne4springboot.annotation.PK;
@@ -110,7 +111,7 @@ public class MySQLUtil {
 	}
 
 	public static String getDelRealSQL(final Class<? extends DataModel> clazz) {
-		StringBuilder sb = new StringBuilder("delete from  ");
+		StringBuilder sb = new StringBuilder("delete from").append(StrUtil.SPACE);
 		// 获取表名称
 		sb.append(ClassUtil.getTableName(clazz)).append(" where ");
 		Field id = ClassUtil.getIdField(clazz);
@@ -190,6 +191,77 @@ public class MySQLUtil {
 		StringBuilder sb = new StringBuilder(select);
 		sb.append(StrUtil.SPACE).append(sqlExceptSelect);
 		sb.append(StrUtil.SPACE).append("LIMIT ?,?");
+		return sb.toString();
+	}
+	
+	//======用于NamedParameterJdbcTemplate语句=====================
+	
+	/**
+	 * @Description: 生成类似SQL语句：insert into
+	 *               app_user(user_id,user_name,registration_time,sort,created,status)
+	 *               values(:user_id,:user_name,:registration_time,:sort,:created,:status)
+	 * @author: zhangwei(Mr.z).396033084@qq.com @date： 2023/05/20
+	 */
+	public static String getNamedParameterInsertSQL(final Class<? extends DataModel> clazz) {
+		String tableName = ClassUtil.getTableName(clazz);
+		List<String> propertys = ClassUtil.getPropertyName(clazz);
+		return generateNamedParameterInsertSQL(tableName, propertys);
+	}
+	
+	/**
+	 * @Description: 生成类似SQL语句：update app_user set
+	 *               user_name=:user_name,registration_time=:registration_time,sort=:sort,created=:created,status=:status
+	 *               where user_id=:user_id
+	 * @author: zhangwei(Mr.z).396033084@qq.com @date： 2023/05/20
+	 */
+	public static String getNamedParameterUpdateSQL(final Class<? extends DataModel> clazz) {
+		String tableName = ClassUtil.getTableName(clazz);
+		List<String> propertys = ClassUtil.getPropertyNameWithoutPk(clazz);
+		String pkName = ClassUtil.getIdField(clazz).getName();
+		return generateNamedParameterUpdateSQL(tableName, pkName, propertys);
+	}
+	
+	/**
+	 * 	@Description: 通过表名，字段名称list生成 NamedParameter的insert语句
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
+	public static String generateNamedParameterInsertSQL(String tableName, List<String> propertys) {
+		// 开始生成insert语句
+		StringBuilder sb = new StringBuilder("insert into").append(StrUtil.SPACE);
+		sb.append(tableName);
+		StringJoiner names = new StringJoiner(",", "(", ")");
+		propertys.forEach(property -> {
+			names.add(property);
+		});
+		sb.append(names);
+		sb.append(StrUtil.SPACE).append("values").append("(");
+		propertys.forEach(property -> {
+			sb.append(":").append(property).append(",");
+		});
+		// 去掉 最后的逗号
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append(")");
+		return sb.toString();
+	}
+	
+	/**
+	 * 	@Description: 通过表名，主键名，字段名称list生成 NamedParameter的update语句
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
+	public static String generateNamedParameterUpdateSQL(String tableName, String pkName, List<String> propertys) {
+		// 开始生成update语句
+		StringBuilder sb = new StringBuilder("update").append(StrUtil.SPACE);
+		sb.append(tableName);
+		sb.append(StrUtil.SPACE).append("set").append(StrUtil.SPACE);
+		propertys.forEach(property -> {
+			sb.append(property).append("=").append(":").append(property).append(",");
+		});
+		// 去掉 最后的逗号
+		sb.deleteCharAt(sb.length() - 1);
+		sb.append(StrUtil.SPACE).append("where").append(StrUtil.SPACE);
+		sb.append(pkName).append("=").append(":").append(pkName);
 		return sb.toString();
 	}
 }

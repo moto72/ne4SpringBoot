@@ -47,13 +47,39 @@ public class ClassUtil {
 		return clazz.getSimpleName().toString();
 	}
 
+	/**
+	 * 	@Description: 返回Bean中所有的字段名称
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
 	public static List<String> getPropertyName(Class<?> clazz) {
 		List<String> list = new ArrayList<String>();
 		List<Field> fields = getClassFields(clazz);
 		for (Field field : fields) {
 			// 剔除不参与映射字段@NotMap、合成字段synthetic
 			if (field.isAnnotationPresent((Class<? extends Annotation>) NotMap.class) || field.isSynthetic()) {
-				System.err.println(field.getName());
+				continue;
+			}
+			if (field.isAnnotationPresent((Class<? extends Annotation>) Column.class)) {
+				list.add(field.getAnnotation(Column.class).name());
+				continue;
+			}
+			list.add(field.getName());
+		}
+		return list;
+	}
+	
+	/**
+	 * 	@Description: 返回不带主键字段的class属性名称
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
+	public static List<String> getPropertyNameWithoutPk(Class<?> clazz) {
+		List<String> list = new ArrayList<String>();
+		List<Field> fields = getClassFields(clazz);
+		for (Field field : fields) {
+			// 剔除不参与映射字段@NotMap、合成字段synthetic
+			if (field.isAnnotationPresent((Class<? extends Annotation>) NotMap.class) || field.isAnnotationPresent((Class<? extends Annotation>) PK.class) || field.isSynthetic()) {
 				continue;
 			}
 			if (field.isAnnotationPresent((Class<? extends Annotation>) Column.class)) {
