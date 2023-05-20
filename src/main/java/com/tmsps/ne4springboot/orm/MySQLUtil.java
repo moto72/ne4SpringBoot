@@ -5,7 +5,6 @@ import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Map;
-import java.util.StringJoiner;
 
 import com.tmsps.ne4springboot.annotation.Column;
 import com.tmsps.ne4springboot.annotation.PK;
@@ -230,11 +229,10 @@ public class MySQLUtil {
 		// 开始生成insert语句
 		StringBuilder sb = new StringBuilder("insert into").append(StrUtil.SPACE);
 		sb.append(tableName);
-		StringJoiner names = new StringJoiner(",", "(", ")");
-		propertys.forEach(property -> {
-			names.add(property);
-		});
-		sb.append(names);
+		//		StringJoiner names = new StringJoiner("", "(", ")");
+		//		names.add(String.join(",", propertys));
+		//		sb.append(names);
+		sb.append("(").append(String.join(",", propertys)).append(")");
 		sb.append(StrUtil.SPACE).append("values").append("(");
 		propertys.forEach(property -> {
 			sb.append(":").append(property).append(",");
