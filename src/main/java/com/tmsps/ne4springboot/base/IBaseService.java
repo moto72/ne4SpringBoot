@@ -37,8 +37,6 @@ public interface IBaseService {
 	//批量保存数据
 	public void saves(List<? extends DataModel> datas);
 
-	public <T extends DataModel> T findObjById(Object idVal, final Class<? extends DataModel> clazz);
-
 	public <T extends DataModel> T findById(Object idVal, final Class<? extends DataModel> clazz);
 
 	public Map<String, Object> findObj(String sql);
@@ -71,17 +69,19 @@ public interface IBaseService {
 	/**
 	 * 修改Id类型为Object
 	 */
-	public int deleteObjById(Object id, Class<? extends DataModel> clazz);
-
-	public int deleteByID(String pkColumn, Object id, String tableName);
-
-	public int updateObj(DataModel obj);
-
-	public int updateObjT(DataModel obj);
-
-	public int updateChangeObj(DataModel obj);
-
-	public int updateTemplateObj(DataModel obj);
+	public int deleteById(Object id, Class<? extends DataModel> clazz);
+	/**
+	 * 	@Description: 所有字段更新
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
+	public int update(DataModel obj);
+	/**
+	 * 	@Description: 仅更新非NULL的变更字段
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
+	public int updateTemplate(DataModel obj);
 
 	public List<Map<String, Object>> findList(String sql, String sql_cnt, Object[] vals, Page page);
 

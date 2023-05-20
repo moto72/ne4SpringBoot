@@ -10,13 +10,12 @@ import com.tmsps.ne4springboot.annotation.Column;
 import com.tmsps.ne4springboot.annotation.PK;
 import com.tmsps.ne4springboot.orm.model.DataModel;
 
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author zhangwei 396033084@qq.com
  */
-@Slf4j
 public class MySQLUtil {
 
 	public static String getInsSQL(final Class<? extends DataModel> clazz) {
@@ -34,10 +33,9 @@ public class MySQLUtil {
 		sb.append(") values (");
 		for (i = 0; i < names.size() - 1; i++) {
 			// 生成映射的占位符
-			sb.append("? , ");
+			sb.append("?, ");
 		}
 		sb.append("?)");
-		log.debug(sb.toString());
 		return sb.toString();
 	}
 	
@@ -55,7 +53,6 @@ public class MySQLUtil {
 		}
 		sb.append("?)");
 
-		log.debug(sb.toString());
 		return sb.toString();
 	}
 
@@ -85,7 +82,7 @@ public class MySQLUtil {
 		sb.deleteCharAt(sb.length() - 1);
 		sb.append(StrUtil.SPACE).append("where").append(StrUtil.SPACE);
 		sb.append(ClassUtil.getIdField(clazz).getName()).append(StrUtil.SPACE).append("= ?");
-		log.debug(sb.toString());
+
 		return sb.toString();
 	}
 
@@ -109,7 +106,6 @@ public class MySQLUtil {
 		sb.deleteCharAt(sb.length() - 1);
 		sb.append(" where ");
 		sb.append(ClassUtil.getIdField(obj.getClass()).getName()).append(" = ?");
-		log.debug(sb.toString());
 		return sb.toString();
 	}
 
@@ -119,7 +115,6 @@ public class MySQLUtil {
 		sb.append(ClassUtil.getTableName(clazz)).append(" where ");
 		Field id = ClassUtil.getIdField(clazz);
 		sb.append(id.getName()).append(" = ?");
-		log.debug(sb.toString());
 		return sb.toString();
 	}
 
@@ -128,7 +123,6 @@ public class MySQLUtil {
 		// 获取表名称
 		sb.append(tableName).append(" where ");
 		sb.append(pkColumn).append(" = ?");
-		log.debug(sb.toString());
 		return sb.toString();
 	}
 
@@ -141,7 +135,6 @@ public class MySQLUtil {
 		if (status) {// 是否需要标识位 status
 			sb.append(" and status = 0");
 		}
-		log.debug(sb.toString());
 		return sb.toString();
 	}
 
@@ -151,10 +144,9 @@ public class MySQLUtil {
 		} else if (StrUtil.isNotBlank(tableName)) {
 			StringBuilder sb = new StringBuilder("select * from ").append(tableName).append(" t");
 			sb.append(" where t.").append(pkName).append(" = ?");
-			log.debug(sb.toString());
 			return sb.toString();
 		} else {
-			log.error("tableName and pkName is not null !!!");
+			Console.error("TableName and PkName can not be null !!!");
 		}
 		return null;
 	}
@@ -163,10 +155,9 @@ public class MySQLUtil {
 		if (StrUtil.isNotBlank(tableName)) {
 			StringBuilder sb = new StringBuilder("select * from ").append(tableName).append(" t");
 			sb.append(" where t._id = ?");
-			log.debug(sb.toString());
 			return sb.toString();
 		} else {
-			log.error("tableName is not null !!!");
+			Console.error("TableName can not be null !!!");
 		}
 		return null;
 	}
@@ -177,7 +168,6 @@ public class MySQLUtil {
 		}
 		StringBuilder sizeSql = new StringBuilder("SELECT COUNT(*) ");
 		sizeSql.append(sql.substring(sql.toUpperCase().lastIndexOf("FROM")));
-		log.debug(sizeSql.toString());
 		return sizeSql.toString();
 	}
 
