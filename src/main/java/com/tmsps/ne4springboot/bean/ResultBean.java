@@ -15,9 +15,9 @@ import java.io.Serializable;
  *	@Copyright: 行歌信息	
  */
 @Data
-@Accessors(fluent = true, chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 public class ResultBean implements Serializable {
 	private static final long serialVersionUID = -5135834636553108937L;
 

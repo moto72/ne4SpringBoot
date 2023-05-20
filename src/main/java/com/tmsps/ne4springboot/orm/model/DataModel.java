@@ -28,6 +28,11 @@ public class DataModel implements Serializable {
 		return idVal;
 	}
 	
+	@JSONField(serialize = false)
+	public String getTableName() {
+		return ClassUtil.getTableName(getClass());
+	}
+	
 	/**
 	 * 	@Description: 根据字段名称获取字段的值.
 	 * 	getDeclaredFiled 仅能获取类本身的属性成员(包括私有、共有、保护).
@@ -35,6 +40,7 @@ public class DataModel implements Serializable {
 	 *	@author: zhangwei(Administrator).396033084@qq.com
 	 *	@date： 2022/08/22
 	 */
+	@JSONField(serialize = false)
 	public Object getFieldValByName(String fieldName) {
 		try {
 			Field field = this.getClass().getDeclaredField(fieldName);
@@ -51,6 +57,7 @@ public class DataModel implements Serializable {
 	 *	@author: zhangwei(Administrator).396033084@qq.com
 	 *	@date： 2022/08/22
 	 */
+	@JSONField(serialize = false)
 	public boolean setValtoField(String fieldName, Object fieldValue) {
 		try {
 			Field field = this.getClass().getDeclaredField(fieldName);
@@ -60,11 +67,6 @@ public class DataModel implements Serializable {
 			e.printStackTrace();
 			return false;
 		}
-	}
-	
-	@JSONField(serialize = false)
-	public String getTableName() {
-		return ClassUtil.getTableName(getClass());
 	}
 	
 	public String toJsonString() {

@@ -25,7 +25,7 @@ public class SwapBean implements Serializable {
 	private String code;
 	private String msg;
 	private Object data;
-
+	
 	public String toJsonString() {
 		return JSON.toJSONString(this);
 	}
@@ -37,7 +37,6 @@ public class SwapBean implements Serializable {
 	 *	@date： 2022/08/19
 	 */
 	public String toAllStringJson() {
-		return JSON.toJSONString(this, JSONWriter.Feature.WriteNonStringValueAsString, JSONWriter.Feature.WriteNullListAsEmpty,JSONWriter.Feature.WriteMapNullValue);
+		return JSON.toJSONString(this, JSONWriter.Feature.WriteNonStringValueAsString, JSONWriter.Feature.WriteNullListAsEmpty, JSONWriter.Feature.WriteMapNullValue);
 	}
-	
 }
