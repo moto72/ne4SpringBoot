@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 
 import com.alibaba.fastjson2.JSON;
-import com.tmsps.ne4springboot.orm.ClassUtil;
+import com.alibaba.fastjson2.JSONWriter;
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.tmsps.ne4springboot.annotation.NotMap;
+import com.tmsps.ne4springboot.orm.ClassUtil;
 
 /**
  * 
@@ -17,7 +19,7 @@ public class DataModel implements Serializable {
 	@NotMap
 	private static final long serialVersionUID = -2624604146613754567L;
 
-	
+	@JSONField(serialize = false)
 	public Object getPK() {
 		// 获取对象中ID属性字段
 		Field idField = ClassUtil.getIdField(this.getClass());
@@ -60,11 +62,16 @@ public class DataModel implements Serializable {
 		}
 	}
 	
+	@JSONField(serialize = false)
 	public String getTableName() {
 		return ClassUtil.getTableName(getClass());
 	}
 	
 	public String toJsonString() {
 		return JSON.toJSONString(this);
+	}
+
+	public String toAllStringJson() {
+		return JSON.toJSONString(this, JSONWriter.Feature.WriteNonStringValueAsString, JSONWriter.Feature.WriteNullListAsEmpty, JSONWriter.Feature.WriteMapNullValue);
 	}
 }

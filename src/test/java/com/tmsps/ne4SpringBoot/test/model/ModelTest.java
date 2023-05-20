@@ -1,15 +1,16 @@
 package com.tmsps.ne4SpringBoot.test.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.alibaba.fastjson2.JSON;
 import com.tmsps.ne4springboot.orm.ClassUtil;
 
 import cn.hutool.core.lang.Console;
-import cn.hutool.db.meta.Table;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *	@ClassName: ModelTest
@@ -47,5 +48,22 @@ public class ModelTest {
 	public void getValues() {
 		List<Object> values = ClassUtil.getValuesPar(user);
 		Console.log("values: {}", values);
+	}
+	
+	@Test
+	public void toJSON() {
+		app_user user = new app_user().setUser_id(2333L);
+		app_user user1 = new app_user().setUser_id(2444L);
+		List<app_user> list = new ArrayList<>();
+		list.add(user);
+		list.add(user1);
+		Console.log("user to Json:{}", user.toJsonString());
+		Console.log("users to Json:{}", JSON.toJSONString(list));
+		Console.log("user to JsonAllString:{}", user.toAllStringJson());
+	}
+	
+	@Test
+	public void collection() {
+		System.err.println(Arrays.asList(new String[] {"tableName","PK"}));
 	}
 }

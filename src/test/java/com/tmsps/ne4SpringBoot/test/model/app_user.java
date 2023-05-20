@@ -1,13 +1,15 @@
 package com.tmsps.ne4SpringBoot.test.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.alibaba.fastjson2.annotation.JSONField;
 import com.tmsps.ne4springboot.annotation.NotMap;
+import com.tmsps.ne4springboot.annotation.PK;
 import com.tmsps.ne4springboot.annotation.Table;
 import com.tmsps.ne4springboot.orm.model.DataModel;
+import com.tmsps.ne4springboot.serializer.FastJson2StringSerializer;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,10 +25,12 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
+@Table(TableName = "app_user")
 public class app_user extends DataModel {
 	@NotMap
 	private static final long serialVersionUID = -2266832993448971804L;
-	
+	@PK
+	@JSONField(serializeUsing = FastJson2StringSerializer.class)
 	private Long user_id;
 	private String user_name;
 	
@@ -36,5 +40,4 @@ public class app_user extends DataModel {
 	private Integer sort;
 	private Long created;
 	private Integer status;
-	
 }
