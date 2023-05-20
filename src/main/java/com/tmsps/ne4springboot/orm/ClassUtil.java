@@ -17,6 +17,7 @@ import com.tmsps.ne4springboot.annotation.Table;
 import com.tmsps.ne4springboot.orm.model.DataModel;
 
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 
 /**
  * 
@@ -30,29 +31,33 @@ public class ClassUtil {
 	 *	@date： 2023/05/19
 	 */
 	public static String getTableName(Class<? extends DataModel> clazz) {
+		// 没有Table注解，返回类的SimplName
 		if (!clazz.isAnnotationPresent(Table.class)) {
 			return clazz.getSimpleName().toString();
-		} else if (!"".equals(((Table) clazz.getAnnotation(Table.class)).value().toString())) {
-			return ((Table) clazz.getAnnotation(Table.class)).value().toString();
-		} else if ("".equals(((Table) clazz.getAnnotation(Table.class)).TableName().toString())) {
-			return clazz.getSimpleName().toString();
-		} else {
-			return ((Table) clazz.getAnnotation(Table.class)).TableName().toString();
 		}
+		// Table注解的value值不为空，返回value的值为表名称
+		if (StrUtil.isNotBlank(clazz.getAnnotation(Table.class).value())) {
+			return clazz.getAnnotation(Table.class).value();
+		}
+		//Table注解的TableName值不为空，返回TableName的值为表名称
+		if (StrUtil.isNotBlank(clazz.getAnnotation(Table.class).TableName())) {
+			return clazz.getAnnotation(Table.class).TableName();
+		}
+		// 未找到显式的表明，返回约定的类名称作为表名称
+		return clazz.getSimpleName().toString();
 	}
 
 	public static List<String> getPropertyName(Class<?> clazz) {
 		List<String> list = new ArrayList<String>();
 		List<Field> fields = getClassFields(clazz);
 		for (Field field : fields) {
-			if (field.isAnnotationPresent((Class<? extends Annotation>) NotMap.class)) {
+			// 剔除不参与映射字段@NotMap、合成字段synthetic
+			if (field.isAnnotationPresent((Class<? extends Annotation>) NotMap.class) || field.isSynthetic()) {
+				System.err.println(field.getName());
 				continue;
 			}
 			if (field.isAnnotationPresent((Class<? extends Annotation>) Column.class)) {
 				list.add(field.getAnnotation(Column.class).name());
-				continue;
-			}
-			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
 				continue;
 			}
 			list.add(field.getName());
@@ -64,10 +69,8 @@ public class ClassUtil {
 		List<Field> clazzField = new ArrayList<Field>();
 		Field[] fields = clazz.getDeclaredFields();
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
-				continue;
-			}
-			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
+			// 剔除不参与映射字段@NotMap、合成字段synthetic
+			if (field.isAnnotationPresent(NotMap.class) || field.isSynthetic()) {
 				continue;
 			}
 			clazzField.add(field);
@@ -75,17 +78,41 @@ public class ClassUtil {
 		return clazzField;
 	}
 
+	/**
+	 * 	@Description: 返回属性值列表
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2023/05/20
+	 */
+	public static List<Object> getPropertyValues(Object obj) {
+		List<Object> list = new ArrayList<Object>();
+		List<Field> fields = getClassFields(obj.getClass());
+		for (Field field : fields) {
+			// 剔除不参与映射字段@NotMap、合成字段synthetic
+			if (field.isAnnotationPresent(NotMap.class) || field.isSynthetic()) {
+				continue;
+			}
+			boolean acc = field.canAccess(obj);
+			field.setAccessible(true);
+			try {
+				Object value = field.get(obj);
+				list.add(value);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				field.setAccessible(acc);
+			}
+		} // for end
+		return list;
+	}
+	
 	public static List<Object> getValuesPar(Object obj) {
 		List<Object> list = new ArrayList<Object>();
 		List<Field> fields = getClassFields(obj.getClass());
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
+			// 剔除不参与映射字段@NotMap、合成字段synthetic
+			if (field.isAnnotationPresent(NotMap.class) || field.isSynthetic()) {
 				continue;
 			}
-			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
-				continue;
-			}
-
 			boolean acc = field.canAccess(obj);
 			field.setAccessible(true);
 			try {
@@ -101,16 +128,16 @@ public class ClassUtil {
 	}
 
 	/**
-	 * 获取Modelbean 属性名称和属性值MAP author zhangwei 2015年10月12日 下午5:26:10
+	 * 	@Description: 获取Modelbean 属性名称和属性值MAP
+	 *	@author: zhangwei(Mr.z).396033084@qq.com
+	 *	@date： 2015/10/12
 	 */
 	public static LinkedHashMap<Object, Object> getClassKeyVal(final Object obj) {
 		LinkedHashMap<Object, Object> classMap = new LinkedHashMap<Object, Object>();
 		List<Field> fields = getClassFields(obj.getClass());
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
-				continue;
-			}
-			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
+			// 剔除不参与映射字段@NotMap、合成字段synthetic
+			if (field.isAnnotationPresent(NotMap.class) || field.isSynthetic()) {
 				continue;
 			}
 			boolean acc = field.canAccess(obj);
@@ -133,10 +160,7 @@ public class ClassUtil {
 		LinkedHashMap<Object, Object> classMap = new LinkedHashMap<Object, Object>();
 		List<Field> fields = getClassFields(obj.getClass());
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
-				continue;
-			}
-			if (field.isAnnotationPresent(PK.class)) {
+			if (field.isAnnotationPresent(NotMap.class) || field.isAnnotationPresent(PK.class)) {
 				continue;
 			}
 			boolean acc = field.canAccess(obj);
@@ -163,10 +187,7 @@ public class ClassUtil {
 		LinkedHashMap<Object, Object> classMap = new LinkedHashMap<Object, Object>();
 		List<Field> fields = getClassFields(obj.getClass());
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
-				continue;
-			}
-			if (field.isAnnotationPresent(PK.class)) {
+			if (field.isAnnotationPresent(NotMap.class) || field.isAnnotationPresent(PK.class)) {
 				continue;
 			}
 			if (field.isAnnotationPresent(Column.class) && !field.getAnnotation(Column.class).insertable()) {
@@ -196,10 +217,7 @@ public class ClassUtil {
 		LinkedHashMap<Object, Object> classMap = new LinkedHashMap<Object, Object>();
 		List<Field> fields = getClassFields(obj.getClass());
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
-				continue;
-			}
-			if (field.isAnnotationPresent(PK.class)) {
+			if (field.isAnnotationPresent(NotMap.class) || field.isAnnotationPresent(PK.class)) {
 				continue;
 			}
 			if (field.isAnnotationPresent(Column.class) && !field.getAnnotation(Column.class).updateable()) {
@@ -238,10 +256,7 @@ public class ClassUtil {
 		LinkedHashMap<Object, Object> classMap = new LinkedHashMap<Object, Object>();
 		List<Field> fields = getClassFields(obj.getClass());
 		for (Field field : fields) {
-			if (field.isAnnotationPresent(NotMap.class)) {
-				continue;
-			}
-			if (field.isSynthetic()) {//如果类中字段为合成字段，剔除。
+			if (field.isAnnotationPresent(NotMap.class) || field.isSynthetic()) {
 				continue;
 			}
 			boolean acc = field.canAccess(obj);

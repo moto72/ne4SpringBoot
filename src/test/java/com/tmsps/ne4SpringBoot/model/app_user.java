@@ -1,6 +1,7 @@
 package com.tmsps.ne4SpringBoot.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,7 +23,6 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-@Table("app_user")
 public class app_user extends DataModel {
 	@NotMap
 	private static final long serialVersionUID = -2266832993448971804L;
@@ -36,4 +36,5 @@ public class app_user extends DataModel {
 	private Integer sort;
 	private Long created;
 	private Integer status;
+	
 }

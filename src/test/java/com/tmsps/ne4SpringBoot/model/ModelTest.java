@@ -1,10 +1,15 @@
 package com.tmsps.ne4SpringBoot.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.tmsps.ne4springboot.orm.ClassUtil;
+
+import cn.hutool.core.lang.Console;
+import cn.hutool.db.meta.Table;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  *	@ClassName: ModelTest
@@ -24,6 +29,23 @@ public class ModelTest {
 	
 	@Test
 	public void classTest() {
-		System.err.println(ClassUtil.getTableName(app_user.class));
+		Console.log("app_user tableName: {}", ClassUtil.getTableName(app_user.class));
+	}
+	
+	@Test
+	public void jsonTest() {
+		Console.log("app_user toJsonString: {}", user.toJsonString());
+	}
+	
+	@Test
+	public void fieldNameTest() {
+		List<String> columns = ClassUtil.getPropertyName(app_user.class);
+		Console.log("columns: {}", columns);
+	}
+	
+	@Test
+	public void getValues() {
+		List<Object> values = ClassUtil.getValuesPar(user);
+		Console.log("values: {}", values);
 	}
 }
