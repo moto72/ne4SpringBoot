@@ -83,31 +83,6 @@ public interface IBaseService {
 	 */
 	public int updateTemplate(DataModel obj);
 
-	public List<Map<String, Object>> findList(String sql, String sql_cnt, Object[] vals, Page page);
-
-	public List<Map<String, Object>> findList(String sql, Object[] vals, Map<String, String> sort_params, Page page);
-
-	public List<Map<String, Object>> findList(String sql, Object[] vals, Page page);
-
-	public List<Map<String, Object>> findList(String sql, Page page);
-
-	//1.6.5新增
-	public <T> List<T> findList(Class<T> clazz, Page page, String sql, String sql_cnt, Object... vals);
-
-	public <T> List<T> findList(Class<T> clazz, Page page, String sql, Map<String, String> sort_params, Object... vals);
-
-	public <T> List<T> findList(Class<T> clazz, Page page, String sql, Object... vals);
-
-	public <T> List<T> findList(Class<T> clazz, Page page, String sql);
-
-	public int updObj(final Class<?> clazz, Map<String, Object> parm, Map<String, Object> whereparm);
-
-	public Map<String, Object> getMap(String key, Object val);
-
-	public Map<String, List<Object>> getSearchMap();
-
-	public Map<String, Object> getMap(String[] key, Object[] val);
-
 	public Page pageinate(int pageNumber, int pageSize, String select, String sqlExceptSelect, Object... paras);
 
 	public Page pageinate(int pageNumber, int pageSize, String select, String sqlExceptSelect);
@@ -119,18 +94,9 @@ public interface IBaseService {
 
 	public Page pageinate(Page page, String select, String sqlExceptSelect);
 
-	//新版本的查询,节约查询参数
-	public List<Map<String, Object>> findList(String sql, NeParamList params, Map<String, String> sort_params, Page page);
-
 	public List<Map<String, Object>> findList(String sql, NeParamList params);
 
-	//1.6.5新增
-	public <T> List<T> findList(Class<T> clazz, String sql, NeParamList params, Map<String, String> sort_params, Page page);
-
 	public <T> List<T> findList(Class<T> clazz, String sql, NeParamList params);
-
-	//1.6.7新增
-	public <T> T queryForObject(String sql, Class<T> requiredType);
 
 	public <T> T queryForObject(String sql, NeParamList params, Class<T> requiredType);
 }
