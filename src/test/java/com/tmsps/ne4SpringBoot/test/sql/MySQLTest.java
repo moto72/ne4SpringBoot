@@ -15,7 +15,6 @@ import cn.hutool.core.lang.Console;
  *	@Copyright: 行歌信息	
  */
 public class MySQLTest {
-	
 	@Test
 	public void sql() {
 		Console.error("MySQL getInsSQL: {}", MySQLUtil.getInsSQL(app_user.class));
