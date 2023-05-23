@@ -1,234 +1,214 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.tmsps</groupId>
-	<artifactId>ne4SpringBoot</artifactId>
-	<version>3.1.0.1</version>
-	<packaging>jar</packaging>
+    <groupId>com.tmsps</groupId>
+    <artifactId>ne4SpringBoot</artifactId>
+    <version>3.1.0.1</version>
+    <packaging>jar</packaging>
 
-	<name>ne4SpringBoot</name>
-	<url>https://github.com/moto72/ne4SpringBoot</url>
-	<description>NE For SpringBoot is good :)</description>
+    <name>ne4SpringBoot</name>
+    <url>https://github.com/moto72/ne4SpringBoot</url>
+    <description>NE For SpringBoot is good :)</description>
 
-	<issueManagement>
-		<system>GitHub Issue</system>
-		<url>https://github.com/moto72/ne4SpringBoot/issues</url>
-	</issueManagement>
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
+    <issueManagement>
+        <system>GitHub Issue</system>
+        <url>https://github.com/moto72/ne4SpringBoot/issues</url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-	<developers>
-		<developer>
-			<id>tmsps</id>
-			<name>tmsps</name>
-			<email>admin@tmsps.com</email>
-			<url>http://www.tmsps.com</url>
-		</developer>
-	</developers>
-	<scm>
-		<connection>scm:git:git@github.com:moto72/ne4SpringBoot.git</connection>
-		<developerConnection>scm:git@github.com:moto72/ne4SpringBoot.git</developerConnection>
-		<url>https://github.com/moto72/ne4SpringBoot/issues</url>
-	</scm>
+    <developers>
+        <developer>
+            <id>tmsps</id>
+            <name>tmsps</name>
+            <email>admin@tmsps.com</email>
+            <url>http://www.tmsps.com</url>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:moto72/ne4SpringBoot.git</connection>
+        <developerConnection>scm:git@github.com:moto72/ne4SpringBoot.git</developerConnection>
+        <url>https://github.com/moto72/ne4SpringBoot/issues</url>
+    </scm>
 
 
-	<properties>
-		<!-- target JDK version == source JDK version -->
-		<jdk.version>17</jdk.version>
-		<Spring.boot>3.1.0</Spring.boot>
-		<fastjson.version>2.0.31</fastjson.version>
-		<hutool.version>5.8.18</hutool.version>
-		<lombok.version>1.18.26</lombok.version>
-		<junit.version>5.9.3</junit.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <properties>
+        <!-- target JDK version == source JDK version -->
+        <jdk.version>17</jdk.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <Spring.boot>3.1.0</Spring.boot>
+        <fastjson.version>2.0.31</fastjson.version>
+        <hutool.version>5.8.18</hutool.version>
+        <lombok.version>1.18.26</lombok.version>
+        <junit.version>5.9.3</junit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-	<dependencies>
-		<!-- Spring.boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${Spring.boot}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-			<version>${Spring.boot}</version>
-		</dependency>
-		<!-- fastjson -->
-		<dependency>
-			<groupId>
-				com.alibaba.fastjson2</groupId>
-			<artifactId>fastjson2</artifactId>
-			<version>
-				${fastjson.version}</version>
-		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2-extension-spring6 -->
-		<dependency>
-			<groupId>
-				com.alibaba.fastjson2</groupId>
-			<artifactId>fastjson2-extension-spring6</artifactId>
-			<version>
-				${fastjson.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>
-				hutool-all</artifactId>
-			<version>${hutool.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-		<dependency>
-			<groupId>
-				org.projectlombok</groupId>
-			<artifactId>
-				lombok</artifactId>
-			<version>${lombok.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- junit -->
-		<dependency>
-			<groupId>
-				org.junit.jupiter</groupId>
-			<artifactId>
-				junit-jupiter-api</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>
-				org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>
-				${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
+    <dependencies>
+        <!-- Spring.boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${Spring.boot}</version>
+        </dependency>
+        <!-- aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+            <version>${Spring.boot}</version>
+        </dependency>
+        <!-- redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${Spring.boot}</version>
+        </dependency>
+        <!-- jdbc -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <version>${Spring.boot}</version>
+        </dependency>
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2-extension-spring6 -->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2-extension-spring6</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- junit -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	</dependencies>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <finalName>ne4SpringBoot</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>2.5</version>
+                        <configuration>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <useReleaseProfile>false</useReleaseProfile>
+                            <releaseProfiles>release</releaseProfiles>
+                            <goals>deploy</goals>
+                        </configuration>
+                    </plugin>
 
-	<profiles>
-		<profile>
-			<id>
-				release</id>
-			<build>
-				<finalName>ne4SpringBoot</finalName>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>
-							maven-surefire-plugin</artifactId>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>
-							org.apache.maven.plugins</groupId>
-						<artifactId>
-							maven-release-plugin</artifactId>
-						<version>2.5</version>
-						<configuration>
-							<autoVersionSubmodules>true</autoVersionSubmodules>
-							<useReleaseProfile>
-								false</useReleaseProfile>
-							<releaseProfiles>release</releaseProfiles>
-							<goals>
-								deploy</goals>
-						</configuration>
-					</plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.1</version>
+                        <configuration>
+                            <source>${jdk.version}</source>
+                            <target>${jdk.version}</target>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                        </configuration>
+                    </plugin>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- GPG -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
 
-					<plugin>
-						<groupId>
-							org.apache.maven.plugins</groupId>
-						<artifactId>
-							maven-compiler-plugin</artifactId>
-						<version>3.1</version>
-						<configuration>
-							<source>
-								${jdk.version}</source>
-							<target>${jdk.version}</target>
-							<encoding>
-								${project.build.sourceEncoding}</encoding>
-						</configuration>
-					</plugin>
-					<!-- Source -->
-					<plugin>
-						<groupId>
-							org.apache.maven.plugins</groupId>
-						<artifactId>
-							maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<phase>package</phase>
-								<goals>
-									<goal>
-										jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Javadoc -->
-					<plugin>
-						<groupId>
-							org.apache.maven.plugins</groupId>
-						<artifactId>
-							maven-javadoc-plugin</artifactId>
-						<version>2.9.1</version>
-						<configuration>
-							<additionalparam>-Xdoclint:none</additionalparam>
-						</configuration>
-						<executions>
-							<execution>
-								<phase>
-									package</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- GPG -->
-					<plugin>
-						<groupId>
-							org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>
-							1.6</version>
-						<executions>
-							<execution>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-
-			<distributionManagement>
-				<snapshotRepository>
-					<id>
-						oss</id>
-					<url>
-						https://oss.sonatype.org/content/repositories/snapshots</url>
-				</snapshotRepository>
-				<repository>
-					<id>
-						oss</id>
-					<url>
-						https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-				</repository>
-			</distributionManagement>
-		</profile>
-	</profiles>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>oss</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>oss</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 
 </project>
