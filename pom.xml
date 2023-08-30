@@ -5,7 +5,7 @@
 
     <groupId>com.tmsps</groupId>
     <artifactId>ne4SpringBoot</artifactId>
-    <version>3.1.1.2</version>
+    <version>3.1.3.1</version>
     <packaging>jar</packaging>
 
     <name>ne4SpringBoot</name>
@@ -43,11 +43,10 @@
         <jdk.version>17</jdk.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <Spring.boot>3.1.1</Spring.boot>
-        <fastjson.version>2.0.35</fastjson.version>
-        <hutool.version>5.8.20</hutool.version>
+        <Spring.boot>3.1.3</Spring.boot>
+        <fastjson.version>2.0.39</fastjson.version>
+        <hutool.version>5.8.21</hutool.version>
         <lombok.version>1.18.28</lombok.version>
-        <junit.version>5.9.3</junit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -100,19 +99,6 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <!-- junit -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

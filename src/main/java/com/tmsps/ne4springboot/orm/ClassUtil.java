@@ -70,6 +70,21 @@ public class ClassUtil {
 	}
 	
 	/**
+	 * @Description: 获取类型中指定注解的属性名称
+	 * @author: zhangwei(Mr.z).396033084@qq.com @date： 2023/07/18
+	 */
+	public static List<String> getTargetAnnotationPropertyName(Class<?> clazz, Class<? extends Annotation> targetAnnotation) {
+		List<String> list = new ArrayList<String>();
+		List<Field> fields = getClassFields(clazz);
+		for (Field field : fields) {
+			if (field.isAnnotationPresent(targetAnnotation)) {
+				list.add(field.getName());
+			}
+		}
+		return list;
+	}
+	
+	/**
 	 * 	@Description: 返回不带主键字段的class属性名称
 	 *	@author: zhangwei(Mr.z).396033084@qq.com
 	 *	@date： 2023/05/20

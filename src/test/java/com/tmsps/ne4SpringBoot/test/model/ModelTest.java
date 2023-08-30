@@ -10,6 +10,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 
 import com.alibaba.fastjson2.JSON;
+import com.tmsps.ne4springboot.annotation.UpdateIgnore;
 import com.tmsps.ne4springboot.orm.ClassUtil;
 
 import cn.hutool.core.lang.Console;
@@ -79,5 +80,10 @@ public class ModelTest {
 	@Test
 	public void collection() {
 		System.err.println(Arrays.asList(new String[] {"tableName","PK"}));
+	}
+	
+	@Test
+	public void getTargetA() {
+		System.err.println(ClassUtil.getTargetAnnotationPropertyName(app_user.class, UpdateIgnore.class));
 	}
 }

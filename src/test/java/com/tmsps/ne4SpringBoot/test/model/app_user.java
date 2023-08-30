@@ -8,6 +8,7 @@ import com.alibaba.fastjson2.annotation.JSONField;
 import com.tmsps.ne4springboot.annotation.NotMap;
 import com.tmsps.ne4springboot.annotation.PK;
 import com.tmsps.ne4springboot.annotation.Table;
+import com.tmsps.ne4springboot.annotation.UpdateIgnore;
 import com.tmsps.ne4springboot.orm.model.DataModel;
 import com.tmsps.ne4springboot.serializer.FastJson2StringSerializer;
 
@@ -37,7 +38,9 @@ public class app_user extends DataModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime registration_time;
 	
+	@UpdateIgnore
 	private Integer sort;
+	@UpdateIgnore
 	private Long created;
 	private Integer status;
 }
